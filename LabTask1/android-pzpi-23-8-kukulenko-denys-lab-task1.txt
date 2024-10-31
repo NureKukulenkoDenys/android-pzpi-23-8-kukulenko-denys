@@ -1,0 +1,216 @@
+Харківський університет радіоелектроніки 
+Факультет комп'ютерних наук 
+Кафедра програмної інженерії 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ЗВІТ 
+до лабораторної роботи 1 з дисципліни 
+"Програмування під Android" 
+на тему "Створення мінімального Android застосунку"  
+ 
+ 
+ 
+ 
+ 
+ 
+Виконав ст. гр ПЗПІ-23-8 
+Кукуленко Денис Васильович
+ 
+ 
+Перевірив  ст. викладач кафедри ПІ Сокорчук Ігор Петрович 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+Харків 2024 
+ 	 
+МЕТА 
+ 
+Метою цієї роботи є ознайомлення з основними етапами життєвого циклу активності в Android та практичне використання цих знань шляхом створення простого Android-застосунку. Завдання передбачає навчитися правильно реалізовувати методи життєвого циклу, такі як onCreate(), onStart(), onResume(), onPause(), onStop(), onRestart(), onDestroy(), для розуміння, як Android керує станами активності. Крім того, робота включає створення інтерфейсу з використанням лінійної розмітки (LinearLayout), що дозволяє розміщувати елементи користувацького інтерфейсу в застосунку. 
+ 
+ЗАВДАННЯ 
+ 
+Встановити Android Studio та створити мінімальний застосунок для Android. 
+Застосунок повинен містити одну активність (Activity). В активності потрібно реалізувати усі базові методи життєвого циклу активностей. При запуску застосунку у центрі екрану повинен з'являтися напис «Task 1». Для розмітки екрану активності потрібно використати лінійну розмітку (Linear Layout). 
+ 
+ХІД РОБОТИ 
+ 
+Завантажив Android Studio та встановив її на комп'ютер. 
+Створив новий проект з шаблоном Empty Activity. 
+Ознайомився зі структурою проекту, переглянув та вивчив основні файли: MainActivity.java, activity_main.xml і 
+AndroidManifest.xml. 
+У файлі activity_main.xml налаштував інтерфейс активності, використовуючи LinearLayout для розміщення елементів (див. Додаток А). 
+Додав новий елемент TextView у центр екрану за допомогою атрибуту android:gravity="center" (див. Додаток А). 
+Налаштував розміри тексту в TextView, використовуючи атрибут android:textSize (див. Додаток А). 
+У файлі MainActivity.java реалізував виведення тексту та всі базові методи життєвого циклу активності: onCreate(), onStart(), onResume(), onPause(), onStop(), onRestart(), onDestroy() (див. Додаток Б). 
+Додав логування до кожного з методів життєвого циклу для відслідковування переходів між станами активності (див. Додаток Б). 
+ 
+ВИСНОВКИ 
+ 
+Посилання на відео в YouTube: https://youtu.be/tt39tIdKURs
+ 
+Під час виконання лабораторної роботи я вивчив основні етапи життєвого циклу активності Android і впровадив їх у своєму проєкті. Створив базовий Android-застосунок із простим інтерфейсом, де використав лінійну розмітку та розмістив текстовий елемент у центрі екрану. Також налаштував логування для моніторингу подій життєвого циклу активності. Публікація проєкту на GitHub допомогла мені закріпити знання щодо роботи з системою контролю версій Git. Завдяки цій лабораторній роботі я глибше зрозумів процес створення Android-застосунків і освоїв роботу з Android Studio для їх розробки.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ВИКОРИСТАННІ ДЖЕРЕЛА
+ 
+1.	YouTube. " Як Зробити Android Додаток з Нуля" https://www.youtube.com/watch?v=p0tmWQIKk4g. Дата доступу: 21 жовтня 2024 року. 
+2.	Національний університет радіоелектроніки. https://dl.nure.ua/. Дата доступу: 21 жовтня 2024 року. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ДОДАТОК А 
+ 
+Інтерфейс активності у файлі activity_main.xml 
+ 
+1.	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+2.	android:layout_width="match_parent" 
+3.	android:layout_height="match_parent" 
+4.	android:orientation="vertical" 
+5.	android:gravity="center"> 
+ 
+6.	<TextView 
+7.	android:id="@+id/text_view" 
+8.	android:layout_width="wrap_content" 
+9.	android:layout_height="wrap_content" 
+10.	android:textSize="48sp"
+11.	android:textColor="#FF000" 
+12.	android:fontFamily="cursive" 
+13.	android:textStyle="bold"  /> 
+14.	</LinearLayout> 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ДОДАТОК Б 
+ 
+Виведення тексту та всі базові методи життєвого циклу активності у файлі MainActivity.java 
+ 
+1.	public class MainActivity extends AppCompatActivity { 
+ 
+2.	@Override 
+3.	protected void onCreate(Bundle savedInstanceState) { 
+4.	super.onCreate(savedInstanceState); 
+5.	setContentView(R.layout.activity_main); 
+6.	Log.d("Життевий цикл", "onCreate"); 
+ 
+7.	TextView textView = findViewById(R.id.text_view); 
+8.	textView.setText("My first lab"); 
+9.	} 
+ 
+10.	@Override 
+11.	protected void onStart() { 
+12.	super.onStart(); 
+13.	Log.d("life cycle", "onStart"); 
+14.	} 
+ 
+15.	@Override 
+16.	protected void onResume() { 
+17.	super.onResume(); 
+18.	Log.d("life cycle ", "onResume"); 
+19.	} 
+ 
+20.	@Override 
+21.	protected void onPause() { 
+22.	super.onPause(); 
+23.	Log.d("life cycle ", "onPause"); 
+24.	} 
+ 
+25.	@Override 
+26.	protected void onStop() { 
+27.	super.onStop(); 
+28.	Log.d("life cycle ", "onStop"); 
+29.	} 
+ 
+30.	@Override 
+31.	protected void onRestart() { 
+32.	super.onRestart(); 
+33.	Log.d("life cycle ", "onRestart"); 
+34.	} 
+ 
+35.	@Override 
+36.	protected void onDestroy() { 
+37.	super.onDestroy(); 
+38.	Log.d("life cycle ", "onDestroy"); 
+39.	} 40. } 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
