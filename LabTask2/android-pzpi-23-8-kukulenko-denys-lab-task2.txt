@@ -1,0 +1,329 @@
+Харківський університет радіоелектроніки  
+Факультет комп'ютерних наук  
+Кафедра програмної інженерії  
+  
+  
+  
+  
+  
+  
+  
+ЗВІТ
+до до лабораторної роботи 2
+з дисципліни
+"Програмування під Android"
+на тему " Регулятори SeekBar"
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Виконав ст.гр. ПЗПЗІ-23-8
+Кукуленко Денис Васильович
+
+
+
+Перевірив ст.викладач
+Кафедри ПІ Сокорчук Ігор Петрович 
+  
+  
+  
+ 
+ 
+  
+	Харків 2024  	  
+
+
+
+МЕТА  
+  
+    Метою цієї роботи є розробка редактора кольору, який дозволяє користувачеві змінювати колір панелі за допомогою трьох регуляторів SeekBar, які відповідають за RGB компоненти кольору. Навчитися створювати інтерфейс, що адаптується до орієнтації пристрою: у портретному режимі регулятори розташовуються під панеллю і займають одну третину висоти екрана, а в ландшафтному режимі — праворуч від панелі та займають одну третину ширини. Завдання передбачає використання LinearLayout для організації елементів інтерфейсу, а також реалізацію механізму, що дозволяє динамічно оновлювати колір панелі відповідно до значень, обраних за допомогою регуляторів.
+
+ЗАВДАННЯ  
+  
+Розробити редактор, у якому з допомогою трьох регуляторів SeekBar встановлюється колір панелі.
+    Регулятори визначають RGB компоненти кольору панелі. Зовнішній вигляд екрану редактора повинен залежати від орієнтації пристроя. У портретній орієнтації пристроя, регулятори повинні знаходитися знизу від панелі, займати 1/3 висоти і розташовуватися на всю ширину екрану. У ланшафтній – праворуч від панелі і займати 1/3 ширини. Решту екрану повинна займати кольорова панель.
+  
+ХІД РОБОТИ  
+  
+Створив новий проект з шаблоном Empty Activity. 
+     Ознайомився зі структурою проекту, переглянув та вивчив основні файли: MainActivity.java, activity_main.xml і AndroidManifest.xml. 
+     У файлі activity_main.xml налаштував інтерфейс активності, використовуючи ConstraintLayout та LinearLayout для розміщення елементів (див. Додаток А). 
+     Створив View для відображення кольорової панелі, яка заповнює більшу частину екрана, та три SeekBar для налаштування значень червоного, зеленого і синього кольорів (див. Додаток А). 
+     Встановив атрибути для SeekBar щоб змінити колір повзунка відповідно до кольору, який він налаштовує (див. Додаток А). 
+     У файлі MainActivity.java реалізував логіку зміни кольору панелі за допомогою методів onProgressChanged() для кожного SeekBar, щоб реагувати на зміни значень (див. Додаток Б). 
+     Додав метод configureLayoutForOrientation() для налаштування макета в залежності від орієнтації екрану (вертикально або горизонтально) (див. Додаток Б). 
+     Реалізував метод updateColorPanel(), який оновлює колір панелі на основі значень з SeekBar (див. Додаток Б). 
+     Протестував додаток на реальному пристрої, щоб впевнитися, що кольори змінюються відповідно до налаштувань повзунків, а макет адаптується до орієнтації екрана. 
+ 
+ 
+ 
+ 
+ВИСНОВКИ  
+  
+Посилання на відео в YouTube https://youtu.be/tJf2Q04DyPY
+  
+У процесі виконання лабораторної роботи я ознайомився з принципами створення адаптивного інтерфейсу в Android, використовуючи регулятори SeekBar для зміни кольору панелі. Я реалізував механізм, що дозволяє користувачеві регулювати RGB компоненти кольору, а також адаптував вигляд інтерфейсу в залежності від орієнтації пристрою. Використання LinearLayout дозволило ефективно розташувати елементи управління, що підвищило зручність використання програми. Ця лабораторна робота дала мені змогу глибше зрозуміти, як створювати інтерфейси, що реагують на зміни умов використання, а також розвинути навички роботи з Android Studio. Окрім того, я отримав практичний досвід у застосуванні методів життєвого циклу активності, що дозволило мені краще усвідомити, як Android управляє станами програми.	 
+ВИКОРИСТАННІ ДЖЕРЕЛА  
+  
+1. 1. YouTube. " Як Зробити Android Додаток з Нуля" https://www.youtube.com/watch?v=p0tmWQIKk4g. Дата доступу: 4 листопада 2024 року.
+2. YouTube. " Seek Bar Example Android Studio Tutorial" https://www.youtube.com/watch?v=0mj1jSOTEVc. Дата доступу: 4 листопада 2024 року.
+3. Національний університет радіоелектроніки. https://dl.nure.ua/. Дата доступу: 4 листопада 2024 року..
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДОДАТОК А 
+Інтерфейс активності у файлі activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/color_panel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@color/black" />
+
+        <LinearLayout
+            android:id="@+id/seekbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <SeekBar
+                android:id="@+id/seekBarRed"
+                android:thumbTint="#FF0000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="255" />
+
+            <SeekBar
+                android:id="@+id/seekBarGreen"
+                android:thumbTint="#01F610"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="255" />
+
+            <SeekBar
+                android:id="@+id/seekBarBlue"
+                android:thumbTint="#0012FF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="255" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+                                         ДОДАТОК   Б 
+Файл MainActivity.java
+  
+package ua.nure.lab2;
+
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Панель кольору, яка змінює фон
+    private View colorPanel;
+    // Регулятори кольору RGB
+    private SeekBar seekBarRed, seekBarGreen, seekBarBlue;
+    // Основний макет і контейнер для регуляторів
+    private LinearLayout mainLayout, seekbarContainer;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Ініціалізація елементів інтерфейсу
+        colorPanel = findViewById(R.id.color_panel);
+        seekBarRed = findViewById(R.id.seekBarRed);
+        seekBarGreen = findViewById(R.id.seekBarGreen);
+        seekBarBlue = findViewById(R.id.seekBarBlue);
+        mainLayout = findViewById(R.id.main_layout);
+        seekbarContainer = findViewById(R.id.seekbar_container);
+
+        // Налаштування макета в залежності від орієнтації
+        configureLayoutForOrientation();
+
+        // Лістенер для відстеження змін на регуляторах кольору
+        SeekBar.OnSeekBarChangeListener colorChangeListener = new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // Оновлення кольору панелі при зміні значення
+                updateColorPanel();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // Викликається, коли користувач починає взаємодію з регулятором БУДЕ ПОМИЛКА ЯКЩО НЕ ЗМІНИТИ
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // Викликається, коли користувач завершує взаємодію з регулятором БУДЕ ПОМИЛКА ЯКЩО НЕ ЗМІНИТИ
+            }
+        };
+
+        // Додавання лістенера до кожного регулятора
+        seekBarRed.setOnSeekBarChangeListener(colorChangeListener);
+        seekBarGreen.setOnSeekBarChangeListener(colorChangeListener);
+        seekBarBlue.setOnSeekBarChangeListener(colorChangeListener);
+
+        // Початкове оновлення панелі кольору
+        updateColorPanel();
+    }
+
+    // Метод для налаштування макета відповідно до орієнтації екрана
+    private void configureLayoutForOrientation() {
+        int orientation = getResources().getConfiguration().orientation;
+
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Якщо екран у ландшафтній орієнтації
+            mainLayout.setOrientation(LinearLayout.HORIZONTAL);
+            colorPanel.setLayoutParams(new LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.MATCH_PARENT, 2));
+            seekbarContainer.setLayoutParams(new LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.MATCH_PARENT, 1));
+        } else {
+            // Якщо екран у портретній орієнтації
+            mainLayout.setOrientation(LinearLayout.VERTICAL);
+            colorPanel.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, 0, 2));
+            seekbarContainer.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, 0, 1));
+        }
+    }
+
+    // Метод для оновлення фону панелі кольору
+    private void updateColorPanel() {
+        // Отримання значень RGB з регуляторів
+        int red = seekBarRed.getProgress();
+        int green = seekBarGreen.getProgress();
+        int blue = seekBarBlue.getProgress();
+
+        // Формування кольору за допомогою Color.rgb()
+        int color = Color.rgb(red, green, blue);
+
+        // Встановлення нового кольору фону панелі
+        colorPanel.setBackgroundColor(color);
+    }
+}
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
