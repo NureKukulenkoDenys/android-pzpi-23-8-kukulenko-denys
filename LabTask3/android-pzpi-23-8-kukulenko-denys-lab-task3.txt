@@ -1,0 +1,524 @@
+Харківський університет радіоелектроніки   
+Факультет комп'ютерних наук   
+Кафедра програмної інженерії   
+   
+   
+   
+   
+   
+   
+   
+ЗВІТ 
+до до лабораторної роботи 3 з дисципліни 
+"Програмування під Android" на тему " Розробка калькулятора" 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  Виконав ст.гр. ПЗПЗІ-23-8 
+Кукуленко Денис Васильович 
+ 
+ 
+ 
+Перевірив ст.викладач 
+Кафедри ПІ Сокорчук Ігор Петрович  
+   
+   
+   
+  
+  
+   
+ 	Харків 2024   	   
+ 
+ 
+ 
+МЕТА   
+   
+    Метою цієї роботи є розробка калькулятора, який підтримує виконання базових арифметичних операцій (додавання, віднімання, множення та ділення) з використанням кнопок для введення чисел і вибору операцій. Завдання включає створення адаптивного інтерфейсу, який автоматично налаштовується під різні розміри та орієнтації екрану: у портретному режимі кнопки калькулятора розташовуються в сітці під полем результату, а в ландшафтному режимі — у компактнішому вигляді. Для реалізації передбачено використання GridLayout для розміщення кнопок та забезпечення гнучкого адаптивного дизайну. 
+ 
+ЗАВДАННЯ   
+   
+Розробити калькулятор на 4 базові арифметичні операції з кнопками для введення аргументів і дій.
+    Калькулятор повинен мати адаптивний користувацький інтерфейс у різних орієнтаціях екрану та на екранах різної роздільної здатності.   
+ХІД РОБОТИ   
+   
+Створив новий проєкт з шаблоном Empty Activity.
+     Ознайомився зі структурою проєкту та вивчив основні файли: MainActivity.java, activity_main.xml і AndroidManifest.xml.
+     У файлі activity_main.xml налаштував інтерфейс активності, використовуючи ConstraintLayout та GridLayout для розміщення кнопок калькулятора, забезпечивши адаптивний інтерфейс (див. Додаток А).
+     Створив поле EditText для відображення результатів обчислень і додав кнопки для введення чисел і вибору операцій (див. Додаток А).
+     У MainActivity.java реалізував обробку натискання на кнопки чисел, операцій та спеціальних функцій, таких як очистка, видалення останнього символа, обчислення відсотків та результату (див. Додаток Б).
+     У MainActivity.java реалізував методи для збереження та відновлення стану калькулятора під час повороту екрана або знищення активності системою. Метод onSaveInstanceState зберігає поточний результат, перше число, вибрану операцію та стан вводу нового числа. У методі onCreate додана обробка переданих даних для відновлення стану калькулятора (див. Додаток Б).
+     Реалізував метод onNumberClick() для обробки натискання на кнопки чисел, який додає введене число до поля результату.
+     Додав метод onOperationClick() для обробки операцій додавання, віднімання, множення та ділення, який зберігає перше число та вибрану операцію.
+     Реалізував метод calculateResult(), який обчислює результат обраної операції над двома числами і виводить його в поле результату (див. Додаток Б).
+     Додав методи для очищення поля, видалення останнього символа, додавання десяткової крапки та обчислення відсотка (див. Додаток Б).
+     Налаштував адаптивність інтерфейсу для різних орієнтацій екрану шляхом перевірки розміщення елементів у портретній та ландшафтній орієнтаціях (див. Додаток А).
+     Протестував додаток на різних пристроях, щоб переконатися, що кнопки та поле результату адаптуються під роздільну здатність і орієнтацію екрану.  
+  
+  
+  
+ВИСНОВКИ   
+   
+Посилання на відео в YouTube https://youtu.be/KTyXCxxbqtI
+   
+У процесі виконання лабораторної роботи я ознайомився з основами створення калькулятора на Android, який підтримує базові арифметичні операції та має адаптивний інтерфейс. Я реалізував обробку натискань на кнопки чисел, операцій і спеціальних функцій, таких як очищення, видалення символа та обчислення відсотків. Використання GridLayout допомогло організувати кнопки на екрані, забезпечуючи зручне розташування елементів, а також спрощення адаптації інтерфейсу для різних орієнтацій екрану. Ця лабораторна робота дала мені змогу глибше зрозуміти, як розробляти інтерфейси для калькуляторів і керувати життєвим циклом Android-активностей у додатках.
+
+
+
+ 	 
+ВИКОРИСТАННІ ДЖЕРЕЛА   
+   
+1. YouTube. " Як Зробити Android Додаток з Нуля" https://www.youtube.com/watch?v=p0tmWQIKk4g. Дата доступу: 13 листопада 2024 року.
+2. YouTube. " Приложение калькулятор на Java в Android Studio." https://www.youtube.com/watch?v=S6O21UpfL9s. Дата доступу: 13 листопада 2024 року.
+3. Національний університет радіоелектроніки. https://dl.nure.ua/. Дата доступу: 13 листопада 2024 року.   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  
+  
+      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ДОДАТОК А  
+Інтерфейс активності у файлі activity_main.xml 
+ 
+
+ 
+ 
+ 
+ 
+ <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+            <EditText
+                android:id="@+id/resultField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/white"
+                android:enabled="false"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textSize="32sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:columnCount="4"
+            android:orientation="horizontal"
+            android:rowCount="5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="C"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="⌫"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnPercent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="%"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnMultiply"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="×"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="7"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="8"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="9"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnDivide"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="÷"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="4"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="5"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="6"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnMinus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="-"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="1"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="2"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="3"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnPlus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="+"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_columnWeight="2"
+                android:layout_margin="4dp"
+                android:text="0"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnDot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="."
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btnEquals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:text="="
+                android:textSize="24sp" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+   
+                                         ДОДАТОК   Б  
+Файл MainActivity.java 
+   
+  
+  
+ package ua.nure.kukulenko_denys_lab3;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText resultField;
+    private double firstNum = 0;
+    private String operation = "";
+    private boolean newNumber = true;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        resultField = findViewById(R.id.resultField);
+
+        if (savedInstanceState != null) {
+            resultField.setText(savedInstanceState.getString("resultField"));
+            firstNum = savedInstanceState.getDouble("firstNum");
+            operation = savedInstanceState.getString("operation");
+            newNumber = savedInstanceState.getBoolean("newNumber");
+        } else {
+            resultField.setText("0");
+        }
+
+        int[] numberIds = {
+                R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
+                R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9
+        };
+
+        for (int id : numberIds) {
+            findViewById(id).setOnClickListener(v -> {
+                Button button = (Button) v;
+                numberClick(button.getText().toString());
+            });
+        }
+
+        findViewById(R.id.btnPlus).setOnClickListener(v -> operationClick("+"));
+        findViewById(R.id.btnMinus).setOnClickListener(v -> operationClick("-"));
+        findViewById(R.id.btnMultiply).setOnClickListener(v -> operationClick("×"));
+        findViewById(R.id.btnDivide).setOnClickListener(v -> operationClick("÷"));
+        findViewById(R.id.btnEquals).setOnClickListener(v -> Result());
+        findViewById(R.id.btnClear).setOnClickListener(v -> clearCalculator());
+        findViewById(R.id.btnDot).setOnClickListener(v -> addDecimalPoint());
+        findViewById(R.id.btnDelete).setOnClickListener(v -> deleteLastCharacter());
+        findViewById(R.id.btnPercent).setOnClickListener(v -> percent());
+    }
+
+    private void numberClick(String number) {
+        if (newNumber) {
+            resultField.setText(number);
+            newNumber = false;
+        } else {
+            resultField.append(number);
+        }
+    }
+
+    private void operationClick(String op) {
+        firstNum = Double.parseDouble(resultField.getText().toString());
+        operation = op;
+        newNumber = true;
+    }
+
+    private void clearCalculator() {
+        resultField.setText("0");
+        firstNum = 0;
+        operation = "";
+        newNumber = true;
+    }
+
+    private void addDecimalPoint() {
+        if (!resultField.getText().toString().contains(".")) {
+            resultField.append(".");
+        }
+    }
+
+    private void deleteLastCharacter() {
+        String currentText = resultField.getText().toString();
+        if (currentText.length() > 1) {
+            resultField.setText(currentText.substring(0, currentText.length() - 1));
+        } else {
+            resultField.setText("0");
+            newNumber = true;
+        }
+    }
+
+    private void percent() {
+        if (!operation.isEmpty()) {
+            double currentNum = Double.parseDouble(resultField.getText().toString());
+            double percentage = (firstNum * currentNum) / 100;
+            resultField.setText(formatResult(percentage));
+            newNumber = true;
+        }
+    }
+
+    private String formatResult(double result) {
+        if (result == (long) result) {
+            return String.format(Locale.US, "%d", (long) result);
+        } else {
+            return String.format(Locale.US, "%.2f", result);
+        }
+    }
+
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("resultField", resultField.getText().toString());
+        outState.putDouble("firstNum", firstNum);
+        outState.putString("operation", operation);
+        outState.putBoolean("newNumber", newNumber);
+    }
+
+    private void Result() {
+        if (operation.isEmpty()) return;
+
+        double secondNum = Double.parseDouble(resultField.getText().toString());
+        double result = 0;
+
+        switch (operation) {
+            case "+":
+                result = firstNum + secondNum;
+                break;
+            case "-":
+                result = firstNum - secondNum;
+                break;
+            case "×":
+                result = firstNum * secondNum;
+                break;
+            case "÷":
+                if (secondNum != 0) {
+                    result = firstNum / secondNum;
+                } else {
+                    resultField.setText("Error");
+                    return;
+                }
+                break;
+        }
+
+        resultField.setText(formatResult(result));
+        operation = "";
+        newNumber = true;
+    }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
